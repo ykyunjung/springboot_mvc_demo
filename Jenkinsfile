@@ -1,12 +1,10 @@
 pipeline {
     agent { label 'jenkinslave' }
     stages {
-        stage('Fetch dependencies') {
-        /* This stage pulls the latest nginx image from
-           Dockerhub */
+        stage('Build') { 
             steps {
-                sh 'sudo docker pull nginx:latest'
-          }
+                sh "mvn install -DskipTests" 
+            }
         }
         stage('Build docker image') {
         /* This stage builds the actual image; synonymous to
