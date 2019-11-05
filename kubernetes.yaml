@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8sdemo
+  labels:
+    commit: ${GIT_COMMIT}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8sdemo
+  template:
+    metadata:
+      labels:
+        app: k8sdemo
+        commit: ${GIT_COMMIT}
+        color: blue
+    spec:
+      containers:
+      - name: k8sdemo
+        image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:${GIT_COMMIT}
+        imagePullPolicy: Always
+        ports:
+        - name: k8sdemo
+          containerPort: 8081
+          protocol: TCP
+      imagePullSecrets:
+        - name: ocirsecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8sdemo
+  labels:
+    app: k8sdemo
+    commit: ${GIT_COMMIT}
+spec:
+  ports:
+  - port: 8081
+    targetPort: 8081
+    name: http
+  selector:
+    app: k8sdemo
+    color: blue
+  type: LoadBalancer
+---
