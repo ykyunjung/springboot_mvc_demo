@@ -15,7 +15,7 @@ pipeline {
                         $class: 'GitSCM',
                         doGenerateSubmoduleConfigurations: false,
                         userRemoteConfigs: [[
-                            url: 'https://github.com/ykyunjung/springboot-dbs-demo'
+                            url: 'https://github.com/ykyunjung/springboot_mvc_demo'
                           ]],
                         branches: [ [name: '*/master'] ]
                       ])
@@ -30,7 +30,7 @@ pipeline {
                         $class: 'GitSCM',
                         doGenerateSubmoduleConfigurations: false,
                         userRemoteConfigs: [[
-                            url: 'https://github.com/ykyunjung/springboot-dbs-demo'
+                            url: 'https://github.com/ykyunjung/springboot_mvc_demo'
                           ]],
                         branches: [ [name: '*/master'] ]
                       ])
