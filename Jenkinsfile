@@ -20,7 +20,7 @@ pipeline {
                         branches: [ [name: '*/master'] ]
                       ])
                 /*sh "sudo docker build -f Dockerfile -t ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT} ." */
-                 sh "sudo docker build . -t ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT}"   
+                 sh "sudo docker build -f ./Dockerfile -t ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT}"   
                 }
             }
         }
