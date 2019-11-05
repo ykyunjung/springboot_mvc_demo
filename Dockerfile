@@ -19,9 +19,9 @@ FROM openjdk:8-jre-slim
 WORKDIR /k8sdemo
 
 # Copy the binary built in the 1st stage
-COPY --from=build /k8sdemo/target/k8sdemo.jar ./
-COPY --from=build /k8sdemo/target/libs ./libs
+COPY --from=build /k8sdemo/target/mvc-0.0.1-SNAPSHOT.war ./
+#COPY --from=build /k8sdemo/target/libs ./libs
 
-CMD ["java", "-jar", "k8sdemo.jar"]
+CMD ["java", "-jar", "mvc-0.0.1-SNAPSHOT.war"]
 
-EXPOSE 8080
+EXPOSE 8081
