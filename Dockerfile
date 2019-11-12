@@ -24,4 +24,4 @@ COPY --from=build /k8sdemo/target/mvc-0.0.1-SNAPSHOT.war ./
 
 CMD ["java", "-jar", "mvc-0.0.1-SNAPSHOT.war"]
 
-EXPOSE 8081
+EXPOSE 8080
