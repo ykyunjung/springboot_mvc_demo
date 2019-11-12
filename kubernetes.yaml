@@ -22,7 +22,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - name: k8sdemo
-          containerPort: 80
+          containerPort: 8080
           protocol: TCP
       imagePullSecrets:
         - name: ocirsecret
@@ -36,8 +36,8 @@ metadata:
     commit: ${GIT_COMMIT}
 spec:
   ports:
-  - port: 80
-    targetPort: 80
+  - port: 8080
+    targetPort: 8080
     name: http
   selector:
     app: k8sdemo
