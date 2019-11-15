@@ -1,27 +1,28 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8sdemo
+  name: k8sdemo2
   labels:
     commit: ${GIT_COMMIT}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: k8sdemo
+      app: k8sdemo2
   template:
     metadata:
       labels:
-        app: k8sdemo
+        app: k8sdemo2
         commit: ${GIT_COMMIT}
         color: blue
     spec:
       containers:
-      - name: k8sdemo
+      - name: k8sdemo2
         image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:${GIT_COMMIT}
         imagePullPolicy: Never
         ports:
-        - name: k8sdemo
+        - name: k8sdemo2
           containerPort: 8080
           protocol: TCP
       imagePullSecrets:
@@ -30,9 +31,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: k8sdemo
+  name: k8sdemo2
   labels:
-    app: k8sdemo
+    app: nginx-from-jenkins
     commit: ${GIT_COMMIT}
 spec:
   ports:
@@ -40,7 +41,7 @@ spec:
     targetPort: 8080
     name: http
   selector:
-    app: k8sdemo
+    app: nginx-from-jenkins
     color: blue
   type: LoadBalancer
 ---
