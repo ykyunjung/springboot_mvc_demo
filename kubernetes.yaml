@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: k8sdemo
-        image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:${GIT_COMMIT}
+        image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:11d9baac009280cc541f381de46e8bba005b95a8
         imagePullPolicy: Always
         ports:
         - name: k8sdemo
