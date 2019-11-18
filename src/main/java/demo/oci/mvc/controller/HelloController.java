@@ -6,8 +6,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import demo.oci.mvc.models.Employee;
+import demo.oci.mvc.services.EmployeeService;
+
 @Controller 
 public class HelloController{
+
+   @Autowired
+   EmployeeService employeeService;
 
    @RequestMapping("/")
    public String index() {
@@ -17,12 +23,14 @@ public class HelloController{
    @PostMapping("/hello")
    public String sayHello(@RequestParam("name") String name, Model model) throws Exception {
 
-      model.addAttribute("firstName", "test_first_name");
-      model.addAttribute("lastName", "test_last_name");
-      model.addAttribute("email", "email@oracle.com");
-      model.addAttribute("phone", "82-123-456-7890");
-      model.addAttribute("hireDate", "2019-11-05");
-      model.addAttribute("jobTitle", "Sales Consultant");
+      Employee emp = employeeService.getEmployeesDetail(name);
+
+      model.addAttribute("firstName", emp.getFirstName());
+      model.addAttribute("lastName", emp.getLastName());
+      model.addAttribute("email", emp.getEmail());
+      model.addAttribute("phone", emp.getPhone());
+      model.addAttribute("hireDate", emp.getHireDate());
+      model.addAttribute("jobTitle", emp.getJobTitle());
 
       System.out.println(model.getAttribute("firstName"));
       
